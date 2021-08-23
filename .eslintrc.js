@@ -9,7 +9,7 @@ module.exports = {
   root: true,
   // parser: "espree", // 如果不指定就是使用默认的espree插件
   parserOptions: {
-    ecmaVersion: "latest",
+    ecmaVersion: 2021,
     sourceType: "module", // 指定写的代码是模块
     ecmaFeatures: {
       impliedStrict: true, // 开启全局 script 模式
@@ -26,7 +26,7 @@ module.exports = {
   plugins: [
     "@typescript-eslint", // 提供rules，有些规则需要对应的parser; 如果不需要用到typescript的规则，可以关闭它
     "vue", // 提供processor、rules，需要对应的parser；processor不会区分文件；
-    "svelte3", // 提供processor
+    "svelte3", // 提供processor，并且区分文件；
     // "react", // 提供rules，不需要特定parser;
   ],
   overrides: [
@@ -75,13 +75,14 @@ module.exports = {
     },
     {
       files: ["*.svelte"],
-      parser: "@typescript-eslint/parser",
-      parserOptions: { // add these parser options
-        // tsconfigRootDir: __dirname,
-        project: ['./tsconfig.json'],
-        extraFileExtensions: ['.svelte'],
-      },
       processor: "svelte3/svelte3", // 必须要指定，因为插件只是提供了processor，没有指定后缀。
+      parser: "@typescript-eslint/parser",
+      parserOptions: {
+        // add these parser options
+        // tsconfigRootDir: __dirname,
+        project: ["./tsconfig.json"],
+        extraFileExtensions: [".svelte"],
+      },
       // sevlet processor 除了分析script，还可以分析style、template
       settings: {
         "svelte3/ignore-styles": (attributes) => {
@@ -98,7 +99,7 @@ module.exports = {
       },
       rules: {
         "no-unused-vars": "error",
-        // "@typescript-eslint/require-await": "error",
+        "@typescript-eslint/require-await": "error",
       },
     },
   ],
@@ -118,7 +119,7 @@ module.exports = {
           ClassDeclaration: true,
           MethodDefinition: true,
           ArrowFunctionExpression: true,
-          FunctionExpression: true,
+          FunctionExpression: false,
         },
       },
     ],

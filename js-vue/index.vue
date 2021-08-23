@@ -9,11 +9,12 @@ const a = 123;
  * @returns {undefined}
  */
 async function aa() {
-    console.log(123);
+    await console.log(123);
 }
 export default {
     data() {
-        return {}
+        aa;
+        return {};
     }
-}
+};
 </script>
