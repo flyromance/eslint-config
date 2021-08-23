@@ -1,0 +1,37 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules/
+
+# production
+dist/
+lib/
+es/
+
+# misc
+.DS_Store
+npm-debug.log*
+yarn-error.log
+lerna-debug.log
+
+/coverage
+
+# yarn.lock
+# package-lock.json
+*bak
+
+# visual studio code
+.history
+*.log
+.temp/**
+.vscode
+.idea
+
+# umi
+.umi
+.umi-production
+
+# screenshot
+screenshot
+.firebase
+.eslintcache
